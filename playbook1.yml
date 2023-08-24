@@ -3,13 +3,13 @@
   become: true
   become_user: root
   tasks:
-  - name: install httpd
-    yum: name=httpd state=present
-  - name: start httpd
-    service: name=httpd state=started
-  - name: deploy html file
-    copy: src=index.html dest=/var/www/html
+  - name: install tomcat
+    yum: name=tomcat state=present
+  - name: start tomcat
+    service: name=tomcat state=started
+  - name: deploy tomcat file
+    get_url: url=https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war dst=/usr/share/tomcat/webapps
     notify: restart httpd
   handlers:
-  - name: restart httpd
-    service: name=httpd state=restarted
+  - name: restart tomcat
+    service: name=tomcat state=restarted
