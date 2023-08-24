@@ -9,7 +9,7 @@
     service: name=tomcat state=started
   - name: deploy tomcat file
     get_url: url=https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war dest=/usr/share/tomcat/webapps
-    notify: restart httpd
+    notify: restart tomcat
   handlers:
   - name: restart tomcat
     service: name=tomcat state=restarted
